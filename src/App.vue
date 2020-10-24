@@ -1,28 +1,45 @@
 <template>
-  <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
-  </div>
+  <v-app>
+    <v-navigation-drawer app v-model="drawer" clipped>navigation Lists</v-navigation-drawer>
+    <v-app-bar color="primary" dark app clipped-left>
+      <v-app-bar-nav-icon @click="drawer=!drawer"></v-app-bar-nav-icon>
+      <v-toolbar-title>toolbar-title</v-toolbar-title>
+      <v-spacer></v-spacer>
+
+      <v-toolbar-items>
+        <v-btn text>For Enterprise</v-btn>
+        <v-menu offset-y>
+          <template v-slot:activator="{on}">
+            <v-btn v-on="on" text>Support</v-btn>
+          </template>
+          <v-list>
+            <v-list-item>
+              <v-list-item-content>
+                <v-list-item-title>Consulting and support</v-list-item-title>
+              </v-list-item-content>
+            </v-list-item>
+            <v-list-item>
+              <v-list-item-content>
+                <v-list-item-title>Discord community</v-list-item-title>
+              </v-list-item-content>
+            </v-list-item>
+          </v-list>
+        </v-menu>
+        <!-- <v-btn outlined x-small>Button</v-btn>
+        <v-btn text>Button</v-btn>
+        <v-btn x-large>Button</v-btn>-->
+      </v-toolbar-items>
+    </v-app-bar>
+    <v-footer color="primary" app>Footer</v-footer>
+  </v-app>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
-
 export default {
-  name: 'App',
-  components: {
-    HelloWorld
-  }
-}
+  data() {
+    return {
+      drawer: null,
+    };
+  },
+};
 </script>
-
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
-</style>
